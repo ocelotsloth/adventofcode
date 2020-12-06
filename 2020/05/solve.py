@@ -3,12 +3,8 @@ with open("input", "r") as file:
     lines = [line.strip() for line in file.readlines()]
 
 def processBoardingPass(boardingPass):
-    row = 0
-    for i in range(7):
-        row += int((boardingPass[i] == 'B') * 64 * (0.5 ** i))
-    col = 0
-    for i in range(3):
-        col += int((boardingPass[i + 7] == 'R') * 4 * (0.5 ** i))
+    row = sum([int((boardingPass[i] == 'B') * 64 * (0.5 ** i)) for i in range(7)])
+    col = sum([int((boardingPass[i + 7] == 'R') * 4 * (0.5 ** i)) for i in range(3)])
     return row * 8 + col
 
 def test_processBoardingPass():
